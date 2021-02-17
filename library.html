@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head><meta charset="utf-8"><link rel='stylesheet' href='library.css'></head>
+<body>
+    <div id='header'>
+        <h1>Library</h1>
+    </div>
+    
+    <div id='cardHolder'>
+        <button id='bookInserter'>Add a book</button>
+    </div>
+
+
+</body>
+<script>
+    let myLibrary = [
+        {
+            title : 'Harry Potter',
+            author : 'J.K Rowling',
+            pages : 650,
+            isRead : true
+        }    
+    ];
+
+    function Book(title, author, pages) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        isRead = true;
+    };
+
+    function addBookToLibrary(book) {
+        myLibrary.push(book);
+    };
+
+    
+
+    let cardHolderDiv = document.querySelector('#cardHolder');
+    function displayBook() {
+        for (i=0; i < myLibrary.length; i++){
+            let card = document.createElement('div');
+            cardHolderDiv.appendChild(card);
+            card.classList.add('card');
+            let pTitle = document.createElement('p');
+            let pAuthor= document.createElement('p');
+            let pPages = document.createElement('p');
+            let pRead = document.createElement('p');
+            card.appendChild(pTitle);
+            card.appendChild(pAuthor);
+            card.appendChild(pPages);
+            pTitle.textContent = 'Title: ' + myLibrary[i].title;
+            pAuthor.textContent = 'Author: ' + myLibrary[i].author;
+            pPages.textContent = 'Pages: ' + myLibrary[i].pages;
+        }
+    };
+    
+    let narnia = new Book('Narnia', 'CKLEWIS', 500);
+    addBookToLibrary(narnia);
+    let addBookButton = document.querySelector('#bookInserter');
+    addBookButton.addEventListener('click', function(){                 //use a show form method, where the form exists, but the button brings the form to a higher z index and visible
+        alert('choose book!');
+    });
+    displayBook();    
+</script>
+
+<!-- to do: create form, display form through button click, make the thing look good (look for online designs that are clean cos its important), add semantic HTML tags to make
+it a habit 
+
+can make for loop into an object instead of createelemnt 4 times
+also have a look at previous object tutorials to see if im using the techniques -->
