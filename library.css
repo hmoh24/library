@@ -75,11 +75,11 @@ select {
 
 
 html {
-    background-color: rgb(51, 51, 51);
+    background-color: rgb(255, 254, 254);
 }
 
 h1 {
-    color: #2b2c2c;
+    color: #ffffff;
     font-size: 70px;
 }
 
@@ -93,13 +93,10 @@ h1 {
     align-content: center;
 }
 
-#cardholder {
+#cardHolder {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: baseline ;
-
 }
 
 #bookInserter{
@@ -113,4 +110,59 @@ h1 {
     margin: 5px;
     width: 200px;
     height: auto
+}
+
+#formHolder {
+  height: 400px;
+  width: 300px;
+  background-color: white ;
+  visibility: visible;
+  box-shadow: 0px 0px 10px rgb(177, 175, 175);
+  padding: 15px;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top: 250px;
+  left: 0;
+  right: 0;
+  display: none;
+  z-index: 99;
+}
+
+h2{
+  color: #abacaa; 
+  margin-bottom: 15px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+input {
+  border: 1px solid rgb(235, 232, 232);
+  margin-bottom: 15px;
+}
+
+label {
+  color: rgb(182, 180, 180);
+}
+
+#formSubmit {
+  width: 250px;
+  background-color:#9AB19A ;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  margin-top: 90px;
+  font-weight: bolder;
+  padding: 5px;
+}
+
+input:focus, button:focus {
+  outline: none;
+  box-shadow: 0px 0px 3px rgb(177, 175, 175);
 }
