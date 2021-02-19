@@ -8,6 +8,7 @@
         <button id='bookInserter'>Add a book</button>
     </div>
     <div id='formHolder'>
+        <button id='deleteForm'>X</button>
         <h2>Book information</h2>
         <form id='form'>
             <label for='title'>Title:</label>
@@ -17,14 +18,10 @@
             <label for='pages'>Pages:</label>
             <input type='number' id='pages' name='pages' min='1' max='3000' required>
             
-            <label>Read Status:</label>
+            <label id='readStatus'>Read Status:</label>
             <label for='read'>
                 Read
                 <input type='radio' id='read' name='readStatus' value='Read'>
-            </label>
-            <label for='reading'>
-                Reading
-                <input type='radio' id='reading' name='readStatus' value='Reading'>
             </label>
             <label for='notRead'>
                 Not read
@@ -37,18 +34,7 @@
 </body>
 <script>
     let myLibrary = [
-        {
-            title : 'Harry Potter',
-            author : 'J.K Rowling',
-            pages : 650,
-            isRead : 'Read'
-        },
-        {
-            title : 'Harry Potter2',
-            author : 'J.K Rowling',
-            pages : 690,
-            isRead : 'Reading'
-        }      
+           
     ];
 
     function Book(title, author, pages, read) {
@@ -71,31 +57,55 @@
             let card = document.createElement('div');
             cardHolderDiv.appendChild(card);
             card.classList.add('card');
+
             let pTitle = document.createElement('p');
+            let hr = document.createElement('hr');
             let pAuthor= document.createElement('p');
             let pPages = document.createElement('p');
-            let pRead = document.createElement('p');
+
             card.appendChild(pTitle);
+            card.appendChild(hr);
             card.appendChild(pAuthor);
             card.appendChild(pPages);
-            card.appendChild(pRead);
-            pTitle.textContent = 'Title: ' + myLibrary[i].title;
+
+            pTitle.textContent = myLibrary[i].title;
+            pTitle.classList.add('title-p');
             pAuthor.textContent = 'Author: ' + myLibrary[i].author;
             pPages.textContent = 'Pages: ' + myLibrary[i].pages;
-            pRead.textContent = 'Read status: ' + myLibrary[i].isRead;
+
             const removeButton = document.createElement('button');
             removeButton.textContent = 'Delete book';
             card.appendChild(removeButton);
             removeButton.addEventListener('click', function(e){
                 e.target.parentNode.remove();
             });
+
+            const isReadButton = document.createElement('button');
+            card.appendChild(isReadButton);
+            isReadButton.textContent = myLibrary[i].isRead;
+            if(myLibrary[i].isRead === 'Read'){
+                isReadButton.style.backgroundColor = 'green';
+            }
+            else if(myLibrary[i].isRead === 'Not read'){
+                isReadButton.style.backgroundColor = 'red';
+            }
+            isReadButton.addEventListener('click', function(e){
+                if(e.target.textContent === 'Read'){
+                    e.target.textContent = 'Not read';
+                    isReadButton.style.backgroundColor = 'red';
+                }
+                else if(e.target.textContent === 'Not read'){
+                    e.target.textContent = 'Read';
+                    isReadButton.style.backgroundColor = 'green';
+                }
+            });
         }
     };
     
-    let narnia = new Book('Narnia', 'CKLEWIS', 500, 'Reading');
+    let narnia = new Book('The Lion, the Witch and the Wardrobe', 'C. S. Lewis', 208, 'Read');
     addBookToLibrary(narnia);
 
-    let asoiaf = new Book('Game of Thrones', 'George R. R. Martin', 720, 'Read');
+    let asoiaf = new Book('Meditations', 'Marcus Aurelius', 143, 'Read');
     addBookToLibrary(asoiaf);
 
     
@@ -113,24 +123,48 @@
         let card = document.createElement('div');
         cardHolderDiv.appendChild(card);
         card.classList.add('card');
+
         let pTitle = document.createElement('p');
+        let hr = document.createElement('hr');
         let pAuthor= document.createElement('p');
         let pPages = document.createElement('p');
-        let pRead = document.createElement('p');
+
         card.appendChild(pTitle);
+        card.appendChild(hr);
         card.appendChild(pAuthor);
         card.appendChild(pPages);
-        card.appendChild(pRead);
-        pTitle.textContent = 'Title: ' + book1.title;
+
+        pTitle.textContent = book1.title;
+        pTitle.classList.add('title-p');
         pAuthor.textContent = 'Author: ' + book1.author;
         pPages.textContent = 'Pages: ' + book1.pages;
-        pRead.textContent = 'Read status: ' + book1.isRead;
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Delete book';
         card.appendChild(removeButton);
         removeButton.addEventListener('click', function(e){
             e.target.parentNode.remove();
         });
+
+        const isReadButton = document.createElement('button');
+        card.appendChild(isReadButton);
+        isReadButton.textContent = book1.isRead;
+        if(book1.isRead === 'Read'){
+                isReadButton.style.backgroundColor = 'green';
+            }
+            else if(book1.isRead === 'Not read'){
+                isReadButton.style.backgroundColor = 'red';
+            }
+        isReadButton.addEventListener('click', function(e){
+            if(e.target.textContent === 'Read'){
+                e.target.textContent = 'Not read';
+                isReadButton.style.backgroundColor = 'red';
+            }
+            else if(e.target.textContent === 'Not read'){
+                e.target.textContent = 'Read';
+                isReadButton.style.backgroundColor = 'green';
+            }
+        });
+
 
         formHolderDiv.style.display = 'none';
     });
@@ -140,17 +174,11 @@
         formHolderDiv.style.display = 'block';
     });
 
-    
-
-    
-    
+    let deleteForm = document.querySelector('#deleteForm');
+    deleteForm.addEventListener('click', function(){
+        formHolderDiv.style.display = 'none';
+    });
 
     displayBook();
 
 </script>
-
-<!-- to do: create form, display form through button click, make the thing look good (look for online designs that are clean cos its important), add semantic HTML tags to make
-it a habit 
-add event listener on window to exit form
-can make for loop into an object instead of createelemnt 4 times
-also have a look at previous object tutorials to see if im using the techniques -->

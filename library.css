@@ -74,8 +74,12 @@ select {
 }
 
 
+
+
+
 html {
-    background-color: rgb(255, 254, 254);
+    background-color: #cad2c5;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 h1 {
@@ -84,7 +88,7 @@ h1 {
 }
 
 #header {
-    background-color:#52584D;
+    background-color:#354f52;
     height: 100px;
     width: 100vw;
     display: flex;
@@ -93,6 +97,7 @@ h1 {
     align-content: center;
 }
 
+
 #cardHolder {
     display: flex;
     flex-direction: row;
@@ -100,20 +105,37 @@ h1 {
 }
 
 #bookInserter{
-    height: 100px;
-    width: 300px;
+    background-color: #52796f;
+    border: none;
+    box-shadow: 0px 0px 10px rgb(177, 175, 175);
+    color: white;
+    font-weight: bolder;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    position: absolute;
+    right:0;
+    top:0;
+    margin-right: 10px;
+    margin-top: 10px;
 }
 .card {
-    background-color: #9AB19A;
-    border: 2px solid #D9C1BB;
+  background: rgb(132,169,140);
+  background: linear-gradient(0deg, rgba(132,169,140,1) 0%, rgba(202,210,197,1) 100%);
+    border: 2px solid #354f52;
     padding: 4px;
     margin: 5px;
-    width: 200px;
-    height: auto
+    width: 300px;
+    height: 375px;
+    box-shadow: 0px 0px 10px rgb(85, 78, 78);
+    display:flex;
+    flex-direction: column;
+    position: relative;
+    flex-wrap: wrap;
 }
 
 #formHolder {
-  height: 400px;
+  height: auto;
   width: 300px;
   background-color: white ;
   visibility: visible;
@@ -130,7 +152,7 @@ h1 {
 }
 
 h2{
-  color: #abacaa; 
+  color: #84a98c; 
   margin-bottom: 15px;
 }
 
@@ -147,17 +169,27 @@ input {
   margin-bottom: 15px;
 }
 
+input[type='radio'] {
+  position: absolute;
+  right: 190px;
+}
+
+
 label {
   color: rgb(182, 180, 180);
 }
 
+#readStatus {
+  margin-bottom: 10px;
+}
+
 #formSubmit {
   width: 250px;
-  background-color:#9AB19A ;
+  background-color:#84a98c;
   border: none;
   color: white;
   border-radius: 3px;
-  margin-top: 90px;
+  margin-top: 10px;
   font-weight: bolder;
   padding: 5px;
 }
@@ -165,4 +197,56 @@ label {
 input:focus, button:focus {
   outline: none;
   box-shadow: 0px 0px 3px rgb(177, 175, 175);
+}
+
+p {
+  color: darkslategray;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  margin-bottom: 10px;
+}
+
+.title-p {
+  font-weight: bolder;
+  font-size: 20px;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+hr {
+  width: 290px;
+  height: 1px;
+  color:rgb(243, 239, 241);
+  border: 1px solid white;
+}
+
+button:nth-last-of-type(1) {
+  font-size: 20px;
+  width: 130px;
+  border: none;
+  position: absolute;
+  right:10px;
+  bottom:10px;
+  color: white;
+  border-radius: 4px;
+}
+
+button:nth-last-of-type(2) {
+  font-size: 20px;
+  width: 130px;
+  border: none;
+  position: absolute;
+  left:10px;
+  bottom:10px;
+  color:red;
+  border-radius: 4px;
+}
+
+#deleteForm {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 0;
+  top:0;
+  background-color: rgb(252, 174, 155);
+  border-radius: 0px;
 }
