@@ -49,29 +49,27 @@
     };
 
     const cardHolderDiv = document.querySelector('#cardHolder');
-
     
 
-    function displayBook() {
-        for (i=0; i < myLibrary.length; i++){
-            let card = document.createElement('div');
+    function createCardDOM(object){
+            const card = document.createElement('div');
             cardHolderDiv.appendChild(card);
             card.classList.add('card');
 
-            let pTitle = document.createElement('p');
-            let hr = document.createElement('hr');
-            let pAuthor= document.createElement('p');
-            let pPages = document.createElement('p');
+            const pTitle = document.createElement('p');
+            const hr = document.createElement('hr');
+            const pAuthor= document.createElement('p');
+            const pPages = document.createElement('p');
 
             card.appendChild(pTitle);
             card.appendChild(hr);
             card.appendChild(pAuthor);
             card.appendChild(pPages);
-
-            pTitle.textContent = myLibrary[i].title;
+            
+            pTitle.textContent = object.title;
             pTitle.classList.add('title-p');
-            pAuthor.textContent = 'Author: ' + myLibrary[i].author;
-            pPages.textContent = 'Pages: ' + myLibrary[i].pages;
+            pAuthor.textContent = 'Author: ' + object.author;
+            pPages.textContent = 'Pages: ' + object.pages;
 
             const removeButton = document.createElement('button');
             removeButton.textContent = 'Delete book';
@@ -82,95 +80,57 @@
 
             const isReadButton = document.createElement('button');
             card.appendChild(isReadButton);
-            isReadButton.textContent = myLibrary[i].isRead;
-            if(myLibrary[i].isRead === 'Read'){
+            isReadButton.textContent = object.isRead;
+            if(object.isRead === 'Read'){
                 isReadButton.style.backgroundColor = 'green';
             }
-            else if(myLibrary[i].isRead === 'Not read'){
+            else if(object.isRead === 'Not read'){
                 isReadButton.style.backgroundColor = 'red';
             }
             isReadButton.addEventListener('click', function(e){
                 if(e.target.textContent === 'Read'){
                     e.target.textContent = 'Not read';
+                    object.isRead = 'Not read';
                     isReadButton.style.backgroundColor = 'red';
                 }
                 else if(e.target.textContent === 'Not read'){
                     e.target.textContent = 'Read';
+                    object.isRead = 'Read';
                     isReadButton.style.backgroundColor = 'green';
                 }
             });
+    }
+    
+    function displayBookFromLibrary() {
+        for (i=0; i < myLibrary.length; i++){
+            createCardDOM(myLibrary[i]);
         }
     };
     
     let narnia = new Book('The Lion, the Witch and the Wardrobe', 'C. S. Lewis', 208, 'Read');
     addBookToLibrary(narnia);
 
-    let asoiaf = new Book('Meditations', 'Marcus Aurelius', 143, 'Read');
-    addBookToLibrary(asoiaf);
+    let meditations = new Book('Meditations', 'Marcus Aurelius', 143, 'Read');
+    addBookToLibrary(meditations);
 
     
     const formHolderDiv = document.querySelector('#formHolder');
     const form = document.querySelector('#form');
     form.addEventListener('submit', function(e){
-        e.preventDefault(); //to stop form from submitting and refreshing page
+        e.preventDefault();                                                             //to stop form from submitting and refreshing page
         let title1 = document.querySelector('#title').value;
         let author1 = document.querySelector('#author').value;
         let pages1 = document.querySelector('#pages').value;
-        let readStatus1 = document.querySelector('input[name = readStatus]:checked').value;                           
+        let readStatus1 = document.querySelector('input[name = readStatus]:checked').value;
+
         let book1 = new Book(title1, author1 ,pages1, readStatus1);
         addBookToLibrary(book1);
-
-        let card = document.createElement('div');
-        cardHolderDiv.appendChild(card);
-        card.classList.add('card');
-
-        let pTitle = document.createElement('p');
-        let hr = document.createElement('hr');
-        let pAuthor= document.createElement('p');
-        let pPages = document.createElement('p');
-
-        card.appendChild(pTitle);
-        card.appendChild(hr);
-        card.appendChild(pAuthor);
-        card.appendChild(pPages);
-
-        pTitle.textContent = book1.title;
-        pTitle.classList.add('title-p');
-        pAuthor.textContent = 'Author: ' + book1.author;
-        pPages.textContent = 'Pages: ' + book1.pages;
-        const removeButton = document.createElement('button');
-        removeButton.textContent = 'Delete book';
-        card.appendChild(removeButton);
-        removeButton.addEventListener('click', function(e){
-            e.target.parentNode.remove();
-        });
-
-        const isReadButton = document.createElement('button');
-        card.appendChild(isReadButton);
-        isReadButton.textContent = book1.isRead;
-        if(book1.isRead === 'Read'){
-                isReadButton.style.backgroundColor = 'green';
-            }
-            else if(book1.isRead === 'Not read'){
-                isReadButton.style.backgroundColor = 'red';
-            }
-        isReadButton.addEventListener('click', function(e){
-            if(e.target.textContent === 'Read'){
-                e.target.textContent = 'Not read';
-                isReadButton.style.backgroundColor = 'red';
-            }
-            else if(e.target.textContent === 'Not read'){
-                e.target.textContent = 'Read';
-                isReadButton.style.backgroundColor = 'green';
-            }
-        });
-
-
+        createCardDOM(book1);
         formHolderDiv.style.display = 'none';
     });
     
     const addBookButton = document.querySelector('#bookInserter');
-    addBookButton.addEventListener('click', function(){                 //use a show form method, where the form exists, but the button brings the form to a higher z index and visible
+    addBookButton.addEventListener('click', function(){                
         formHolderDiv.style.display = 'block';
     });
 
@@ -179,6 +139,6 @@
         formHolderDiv.style.display = 'none';
     });
 
-    displayBook();
+    displayBookFromLibrary();
 
 </script>

@@ -120,11 +120,11 @@ h1 {
     margin-top: 10px;
 }
 .card {
-  background: rgb(132,169,140);
-  background: linear-gradient(0deg, rgba(132,169,140,1) 0%, rgba(202,210,197,1) 100%);
+    background: rgb(132,169,140);
+    background: linear-gradient(0deg, rgba(132,169,140,1) 0%, rgba(202,210,197,1) 100%);
     border: 2px solid #354f52;
     padding: 4px;
-    margin: 5px;
+    margin: 15px;
     width: 300px;
     height: 375px;
     box-shadow: 0px 0px 10px rgb(85, 78, 78);
@@ -213,10 +213,10 @@ p {
 }
 
 hr {
-  width: 290px;
+  width: 287px;
   height: 1px;
   color:rgb(243, 239, 241);
-  border: 1px solid white;
+  border: 1px solid rgb(224, 226, 224);
 }
 
 button:nth-last-of-type(1) {
